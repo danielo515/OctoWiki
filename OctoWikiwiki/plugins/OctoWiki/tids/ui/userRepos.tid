@@ -5,13 +5,14 @@ Filter: <$edit-text tag="input" default="" placeholder="Filter repositories" tid
 <$set name="thisTiddler" value=<<currentTiddler>> >
 <table>
 <thead class="evenRow"><tr><td>Repository</td><td>Description</td></tr></thead>
-<$list filter="[prefix[$:/repositories/]search{$:/state/repositories/filter}]">
+<$list filter="[prefix[$:/repositories/]search{$:/state/repositories/filter}sort[title]]">
 <tr>
     <td>
         <$button class="tc-btn-invisible tc-tiddlylink">
             <$action-sendmessage $message="tm-otw-load-repository" username={{!!owner-login}} repository={{!!name}}/>
-            <$action-sendmessage $message="tm-close-tiddler" $param=<<thisTiddler>>/>
-
+            <$action-sendmessage $message="tm-close-all-tiddlers"/>
+            <$action-setfield $tiddler="$:/state/OTW/Repository/Selected" $field="text" $value={{!!name}}/>
+            <$action-navigate $to="$:/plugins/danielo515/OctoWiki/Repository/Files"/>
             {{!!name}}
         </$button>
     </td>

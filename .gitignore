@@ -1,3 +1,5 @@
 gh-pages
 .idea
 images
+reload.sh
+node_modules
